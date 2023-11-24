@@ -42,7 +42,7 @@ def create_model(num_features, max_value):
     model = keras.Sequential()
     # Add an Embedding layer, LSTM layer, and Dense layer to the model
     model.add(layers.Embedding(input_dim=max_value+1, output_dim=64))
-    model.add(layers.LSTM(256))
+    model.add(layers.LSTM(512))
     model.add(layers.Dense(num_features, activation='softmax'))
     # Compile the model with categorical crossentropy loss, adam optimizer, and accuracy metric
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -51,7 +51,7 @@ def create_model(num_features, max_value):
 # Function to train the model
 def train_model(model, train_data, val_data):
     # Fit the model on the training data and validate on the validation data for 100 epochs
-    history = model.fit(train_data, train_data, validation_data=(val_data, val_data), epochs=100)
+    history = model.fit(train_data, train_data, validation_data=(val_data, val_data), epochs=1000)
 
 # Function to predict numbers using the trained model
 def predict_numbers(model, val_data, num_features):
